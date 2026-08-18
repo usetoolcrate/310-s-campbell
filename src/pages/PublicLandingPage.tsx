@@ -379,12 +379,12 @@ export function PublicLandingPage() {
                   417-848-1842
                 </a>
                 <a
-                  href="mailto:?subject=310%20S%20Campbell%20Ave%20-%20walkthrough%20request"
+                  href="mailto:todd@chambersrealestate.com?subject=310%20S%20Campbell%20Ave%20%E2%80%94%20walkthrough%20request&body=Hi%20Todd%2C%0A%0AI%27d%20like%20to%20see%20the%20space%20at%20310%20S%20Campbell.%20A%20little%20about%20my%20business%3A%0A%0A"
                   className="inline-flex items-center gap-2 rounded-[3px] px-5 py-3 text-[15px] font-semibold"
                   style={{ border: "1px solid #8C9C84", color: CREAM }}
                 >
                   <Mail className="size-4" />
-                  Email about the space
+                  Email Todd
                 </a>
               </div>
             </div>
@@ -399,6 +399,13 @@ export function PublicLandingPage() {
                   <div className="text-[13.5px]" style={{ color: "#DCE3D6" }}>
                     Chambers Real Estate Services, LLC
                   </div>
+                  <a
+                    href="mailto:todd@chambersrealestate.com"
+                    className="text-[13px] underline underline-offset-2"
+                    style={{ color: "#C9D6C1" }}
+                  >
+                    todd@chambersrealestate.com
+                  </a>
                 </div>
               </div>
               <p className="mt-4 text-[14px] leading-relaxed" style={{ color: "#DCE3D6" }}>
