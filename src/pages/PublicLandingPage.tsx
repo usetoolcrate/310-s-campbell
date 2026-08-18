@@ -199,7 +199,7 @@ function Lightbox({
           alt={shot.alt}
           onClick={(e) => e.stopPropagation()}
           className="max-h-full max-w-full rounded-[3px] object-contain"
-          style={{ maxHeight: "calc(100vh - 190px)" }}
+          style={{ maxHeight: "calc(100vh - 170px)" }}
         />
 
         <button
@@ -220,8 +220,8 @@ function Lightbox({
         <p className="mx-auto max-w-[60ch] text-[14.5px] leading-relaxed" style={{ color: "#E6DFD3" }}>
           {shot.caption}
         </p>
-        <p className="mt-1 text-[12.5px]" style={{ color: "#9A9086" }}>
-          310 S Campbell Ave · use the arrows, arrow keys, or swipe
+        <p className="mt-1 hidden text-[12.5px] sm:block" style={{ color: "#9A9086" }}>
+          310 S Campbell Ave · use the arrows, the arrow keys, or swipe
         </p>
       </div>
     </div>
@@ -433,7 +433,7 @@ export function PublicLandingPage() {
                     <Expand className="size-4" />
                   </span>
                 </button>
-                <figcaption className="mt-2.5 text-[13px] leading-snug" style={{ color: "#6B6058" }}>
+                <figcaption className="mt-2.5 text-[13px] leading-snug sm:min-h-[2.6em]" style={{ color: "#6B6058" }}>
                   {g.caption}
                 </figcaption>
               </figure>
