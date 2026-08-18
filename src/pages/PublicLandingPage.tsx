@@ -26,7 +26,7 @@ const USE_CASES: UseCase[] = [
       "The floor is one long open run, so seating, bar and back-of-house can go wherever the concept wants them. Additional plumbing is already in the building and there are two restrooms. The last food tenant here opened in roughly ten weeks.",
     points: [
       "Additional plumbing in place",
-      "Two restrooms",
+      "Men's and women's restrooms already built out",
       "Sprinkled building",
       "Basement for dry storage and kegs, no rent charged on it",
     ],
@@ -72,7 +72,7 @@ const USE_CASES: UseCase[] = [
     points: [
       "Existing kitchenette with sink and cabinets",
       "Reclaimed wood partition walls in place",
-      "Two restrooms",
+      "Men's and women's restrooms already built out",
       "4,000 SF plus a full basement",
     ],
     photo: "/kitchenette.webp",
@@ -88,7 +88,7 @@ const LEDGER: [string, string][] = [
   ["Term", "2–5 years, negotiable"],
   ["Available", "Now"],
   ["Basement", "Large, included for storage — no rent charged on it"],
-  ["Restrooms", "Two"],
+  ["Restrooms", "Two — men's and women's, behind the reclaimed wood wall"],
   ["Fire protection", "Sprinkled"],
   ["Plumbing", "Additional plumbing beyond the restrooms"],
   ["Building", "Built 1884 · storefront retail / office · zoned INC"],
@@ -97,7 +97,7 @@ const LEDGER: [string, string][] = [
 
 const GALLERY = [
   { src: "/long-view.webp", alt: "Long view down the main floor toward the front", caption: "Looking down the length of the floor" },
-  { src: "/wood-wall.webp", alt: "Reclaimed wood partition wall with two doorways", caption: "Reclaimed wood partition at the rear" },
+  { src: "/wood-wall.webp", alt: "Reclaimed wood partition wall with doorways to the restrooms", caption: "Reclaimed wood partition — men's and women's restrooms behind it" },
   { src: "/main-floor.webp", alt: "Main floor with columns and pressed-tin ceiling", caption: "Pressed tin overhead, heart pine underfoot" },
   { src: "/front-windows.webp", alt: "Front windows and window seating ledges", caption: "The window line, from inside" },
   { src: "/kitchenette.webp", alt: "Sink and cabinet run", caption: "Sink and cabinets, ready for a break area" },
