@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowUpRight, MapPin, Phone, Mail } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Expand, MapPin, Phone, Mail, X } from "lucide-react";
 
 const INK = "#241F1B";
 const CREAM = "#FBF7EF";
@@ -101,14 +101,136 @@ const GALLERY = [
   { src: "/main-floor.webp", alt: "Main floor with columns and pressed-tin ceiling", caption: "Pressed tin overhead, heart pine underfoot" },
   { src: "/front-windows.webp", alt: "Front windows and window seating ledges", caption: "The window line, from inside" },
   { src: "/kitchenette.webp", alt: "Sink and cabinet run", caption: "Sink and cabinets, ready for a break area" },
+  { src: "/storefront.webp", alt: "The storefront from across S Campbell Ave", caption: "The storefront from across the street" },
 ];
 
 function Rule({ color = "#E2DACB" }: { color?: string }) {
   return <div className="h-px w-full" style={{ background: color }} />;
 }
 
+
+function Lightbox({
+  index,
+  onClose,
+  onChange,
+}: {
+  index: number;
+  onClose: () => void;
+  onChange: (i: number) => void;
+}) {
+  const touchStartX = useRef<number | null>(null);
+  const count = GALLERY.length;
+
+  const go = useCallback(
+    (delta: number) => onChange((index + delta + count) % count),
+    [index, count, onChange],
+  );
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [go, onClose]);
+
+  const shot = GALLERY[index];
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={shot.caption}
+      className="fixed inset-0 z-50 flex flex-col"
+      style={{ background: "rgba(26,22,19,0.94)" }}
+      onClick={onClose}
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0].clientX;
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStartX.current;
+        if (start === null) return;
+        const dx = e.changedTouches[0].clientX - start;
+        if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
+        touchStartX.current = null;
+      }}
+    >
+      <div className="flex items-center justify-between px-4 py-3 sm:px-6" style={{ color: CREAM }}>
+        <span className="text-[13px]" style={{ fontFamily: "'DM Mono', monospace" }}>
+          {index + 1} / {count}
+        </span>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          aria-label="Close"
+          className="flex size-10 items-center justify-center rounded-[3px]"
+          style={{ border: "1px solid rgba(251,247,239,0.28)" }}
+        >
+          <X className="size-5" />
+        </button>
+      </div>
+
+      <div className="relative flex flex-1 items-center justify-center px-3 pb-2 sm:px-16">
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            go(-1);
+          }}
+          aria-label="Previous photo"
+          className="absolute left-2 z-10 flex size-11 items-center justify-center rounded-full sm:left-5"
+          style={{ background: "rgba(251,247,239,0.14)", color: CREAM }}
+        >
+          <ChevronLeft className="size-6" />
+        </button>
+
+        <img
+          src={shot.src}
+          alt={shot.alt}
+          onClick={(e) => e.stopPropagation()}
+          className="max-h-full max-w-full rounded-[3px] object-contain"
+          style={{ maxHeight: "calc(100vh - 190px)" }}
+        />
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            go(1);
+          }}
+          aria-label="Next photo"
+          className="absolute right-2 z-10 flex size-11 items-center justify-center rounded-full sm:right-5"
+          style={{ background: "rgba(251,247,239,0.14)", color: CREAM }}
+        >
+          <ChevronRight className="size-6" />
+        </button>
+      </div>
+
+      <div className="px-5 pb-6 pt-3 text-center sm:px-8" onClick={(e) => e.stopPropagation()}>
+        <p className="mx-auto max-w-[60ch] text-[14.5px] leading-relaxed" style={{ color: "#E6DFD3" }}>
+          {shot.caption}
+        </p>
+        <p className="mt-1 text-[12.5px]" style={{ color: "#9A9086" }}>
+          310 S Campbell Ave · use the arrows, arrow keys, or swipe
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function PublicLandingPage() {
   const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const uc = USE_CASES[active];
 
   return (
@@ -288,13 +410,30 @@ export function PublicLandingPage() {
             signing for.
           </p>
 
-          <div className="mt-7 columns-1 gap-4 sm:columns-2 lg:columns-3">
-            {GALLERY.map((g) => (
-              <figure key={g.src} className="mb-4 break-inside-avoid">
-                <div className="overflow-hidden rounded-[3px]" style={{ border: "1px solid #E2DACB" }}>
-                  <img src={g.src} alt={g.alt} loading="lazy" className="block w-full object-cover" />
-                </div>
-                <figcaption className="mt-2 text-[13px]" style={{ color: "#6B6058" }}>
+          <div className="mt-7 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {GALLERY.map((g, i) => (
+              <figure key={g.src} className="flex flex-col">
+                <button
+                  type="button"
+                  onClick={() => setLightbox(i)}
+                  aria-label={`Open larger photo: ${g.caption}`}
+                  className="group relative block w-full overflow-hidden rounded-[3px]"
+                  style={{ border: "1px solid #E2DACB", aspectRatio: "4 / 3" }}
+                >
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                  <span
+                    className="absolute right-2 top-2 flex size-8 items-center justify-center rounded-[3px] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                    style={{ background: "rgba(36,31,27,0.72)", color: CREAM }}
+                  >
+                    <Expand className="size-4" />
+                  </span>
+                </button>
+                <figcaption className="mt-2.5 text-[13px] leading-snug" style={{ color: "#6B6058" }}>
                   {g.caption}
                 </figcaption>
               </figure>
@@ -416,6 +555,14 @@ export function PublicLandingPage() {
           </div>
         </div>
       </section>
+
+      {lightbox !== null && (
+        <Lightbox
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+          onChange={(i) => setLightbox(i)}
+        />
+      )}
 
       <footer className="mx-auto w-full max-w-[1180px] px-5 py-8 sm:px-8">
         <div className="flex flex-col justify-between gap-2 text-[12.5px] sm:flex-row" style={{ color: "#6B6058" }}>
