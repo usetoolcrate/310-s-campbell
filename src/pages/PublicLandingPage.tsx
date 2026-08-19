@@ -23,7 +23,7 @@ const USE_CASES: UseCase[] = [
     label: "Restaurant or bar",
     headline: "A dining room that already has a ceiling worth looking at",
     body:
-      "The floor is one long open run, so seating, bar and back-of-house can go wherever the concept wants them. Additional plumbing is already in the building and there are two restrooms. The last food tenant here opened in roughly ten weeks.",
+      "The floor is one long open run, so seating, bar and back-of-house can go wherever the concept wants them. Additional plumbing is already in the building and there are two restrooms.",
     points: [
       "Additional plumbing in place",
       "Men's and women's restrooms already built out",
@@ -91,7 +91,7 @@ const LEDGER: [string, string][] = [
   ["Restrooms", "Two — men's and women's, behind the reclaimed wood wall"],
   ["Fire protection", "Sprinkled"],
   ["Plumbing", "Additional plumbing beyond the restrooms"],
-  ["Building", "Built 1884 · storefront retail / office · zoned INC"],
+  ["Building", "Built 1884, updated in the early 2000s · storefront retail / office · zoned INC"],
   ["Who pays what", "Tenant covers interior maintenance and repairs; landlord covers building insurance and real estate taxes"],
 ];
 
@@ -283,8 +283,8 @@ export function PublicLandingPage() {
               </h1>
               <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed sm:text-[16px]" style={{ color: "#4A423B" }}>
                 An 1884 storefront with pressed-tin ceilings, heart-pine floors and a
-                full wall of glass on the sidewalk. One open floor, almost no walls in
-                the way, and a basement thrown in for storage.
+                full wall of glass on the sidewalk, updated in the early 2000s. One open
+                floor, almost no walls in the way, and a basement thrown in for storage.
               </p>
             </div>
 
