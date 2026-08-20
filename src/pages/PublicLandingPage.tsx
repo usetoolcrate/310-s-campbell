@@ -583,6 +583,33 @@ export function PublicLandingPage() {
           </div>
           <div>All information deemed reliable but not guaranteed. Tenant to verify.</div>
         </div>
+        <div className="mt-7 flex justify-center">
+          <a
+            href="https://www.usetoolcrate.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Created by ToolCrate — opens in a new window"
+            className="inline-flex items-center gap-2 rounded-[9px] px-4 py-2.5 no-underline transition-all hover:-translate-y-px"
+            style={{
+              background: "#09090B",
+              border: "1px solid rgba(255,255,255,0.12)",
+              boxShadow: "0 1px 2px rgba(9,9,11,0.25), 0 4px 14px rgba(9,9,11,0.16)",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 6V4.6c0-.6.45-1.1 1-1.1h6c.55 0 1 .5 1 1.1V6" stroke="#f97316" strokeWidth="2" />
+              <rect x="3.2" y="6.2" width="17.6" height="14.6" rx="2" stroke="#f97316" strokeWidth="2" />
+              <path d="M3.5 11h17" stroke="#f97316" strokeWidth="2" />
+              <path d="M9 11.5v9M15 11.5v9" stroke="#f97316" strokeWidth="1.5" opacity="0.55" />
+            </svg>
+            <span className="text-[10px] font-medium uppercase" style={{ letterSpacing: "0.14em", color: "#A1A1AA" }}>
+              Created by
+            </span>
+            <span className="text-[12.5px] font-extrabold uppercase" style={{ letterSpacing: "0.1em", color: "#FFFFFF" }}>
+              ToolCrate
+            </span>
+          </a>
+        </div>
       </footer>
     </div>
   );
