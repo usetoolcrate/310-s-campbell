@@ -80,7 +80,7 @@ const USE_CASES: UseCase[] = [
   },
 ];
 
-const LEDGER: [string, string][] = [
+const LEDGER: [string, React.ReactNode][] = [
   ["Address", "310 S Campbell Ave, Springfield, MO 65806"],
   ["Space available", "4,000 SF on the ground floor"],
   ["Rent", "$13.00 / SF / year — about $4,333 per month"],
@@ -93,6 +93,12 @@ const LEDGER: [string, string][] = [
   ["Plumbing", "Additional plumbing beyond the restrooms"],
   ["Building", "Built 1884, updated in the early 2000s · storefront retail / office · zoned INC"],
   ["Who pays what", "Tenant covers interior maintenance and repairs; landlord covers building insurance and real estate taxes"],
+  [
+    "Next door",
+    <a key="next-door" href="https://www.314scampbell.com" className="underline">
+      314 S Campbell — 2,150 SF also available
+    </a>,
+  ],
 ];
 
 const GALLERY = [
@@ -565,13 +571,15 @@ export function PublicLandingPage() {
       )}
 
       <footer className="mx-auto w-full max-w-[1180px] px-5 py-8 sm:px-8">
-        <div className="flex flex-col justify-between gap-2 text-[12.5px] sm:flex-row" style={{ color: "#6B6058" }}>
-          <div>310 S Campbell Ave, Springfield, MO 65806 · 4,000 SF retail / office for lease</div>
-          <div>
-            Next door:{" "}
-            <a href="https://www.314scampbell.com" className="underline">
-              314 S Campbell — 2,150 SF also for lease
-            </a>
+        <div className="flex flex-col gap-2 text-[12.5px]" style={{ color: "#6B6058" }}>
+          <div className="flex flex-col justify-between gap-2 sm:flex-row">
+            <div>310 S Campbell Ave, Springfield, MO 65806 · 4,000 SF retail / office for lease</div>
+            <div>
+              Next door:{" "}
+              <a href="https://www.314scampbell.com" className="underline">
+                314 S Campbell — 2,150 SF also for lease
+              </a>
+            </div>
           </div>
           <div>All information deemed reliable but not guaranteed. Tenant to verify.</div>
         </div>
