@@ -567,6 +567,12 @@ export function PublicLandingPage() {
       <footer className="mx-auto w-full max-w-[1180px] px-5 py-8 sm:px-8">
         <div className="flex flex-col justify-between gap-2 text-[12.5px] sm:flex-row" style={{ color: "#6B6058" }}>
           <div>310 S Campbell Ave, Springfield, MO 65806 · 4,000 SF retail / office for lease</div>
+          <div>
+            Next door:{" "}
+            <a href="https://www.314scampbell.com" className="underline">
+              314 S Campbell — 2,150 SF also for lease
+            </a>
+          </div>
           <div>All information deemed reliable but not guaranteed. Tenant to verify.</div>
         </div>
       </footer>
